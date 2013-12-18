@@ -1,60 +1,29 @@
-/*Выровнять по центру страницы*/
-body {
-    text-align: center;
-}
-.rating {
-    font-size: 0;
-    display: inline-block;
-    height: 25px;
-    width: 125px;
-    overflow: hidden;
-    position: relative;
-    /*Картинка серой звездочки закодированная в base64*/
-    background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREFEQURBIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
-    background-size: contain;
+body{
+  text-align: center;
 }
 
-.rating b {
-    opacity: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    z-index: 1; /*Позиционируем на заднем плане активную звездочку*/
-    /*Картинка желтой звездочки закодированная в base64*/
-    background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkFFRTMwIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
-    background-size: contain;
+.rating
+{
+   display: inline-block;
 }
 
-.rating input {
-    opacity: 0;
-    display: inline-block;
-    height: 100%;
-    width: 20%; /*Меняем ширину, чтобы все 5 radio inputs поместились в классе rating*/
-    margin: 0;
-    padding: 0;
-    z-index: 2; /*Позиционируем на переднем плане элемент radio, чтобы можно было работать с ним дальше*/
-    position: relative;
+.radio_b{
+  display: none; /*скрываем кнопки*/
 }
 
-/*При наведении/нажатии на скрытый элемент radio рядом стоящий <b>, он же желтая звездочка, делается видимым.
-Используя родственный селектор ~ меняется ширина rating b и соотв. кол-во видимых желтых звезд. */
-.rating input:hover + b,
-.rating input:checked + b {
-    opacity: 1;
+label{
+  font-size: 20pt;
+  color: #DFCCFF; /*заливка звезд без выделения*/
+  float: right;
+  padding: 0 5px;
 }
-.rating b {
-    width: 20%;
+
+.rating *:hover ~ label, label:hover{ /*заливаем звезды при наведении*/
+  color: #FAFA3E;
+  cursor: pointer; /*меняем форму курсора при наведении*/
 }
-.rating b ~ b {
-    width: 40%;
-}
-.rating b ~ b ~ b {
-    width: 60%;
-}
-.rating b ~ b ~ b ~ b {
-    width: 80%;
-}
-.rating b ~ b ~ b ~ b ~ b {
-    width: 100%;
+
+
+.rating > input:checked ~ label{ /* заливаем звезды при нажатии*/
+  color: #FFDB0D;
 }
