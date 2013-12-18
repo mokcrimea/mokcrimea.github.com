@@ -8,7 +8,7 @@ body{
 }
 
 .radio_b{
-  display: none; /*скрываем кнопки*/
+  display: none; /*скрываем radio buttons*/
 }
 
 label{
