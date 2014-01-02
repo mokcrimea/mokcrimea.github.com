@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" src="index.js">
+</script>
+        <title>
+            JS - Functions
+        </title>
+    </head>
+    <body>
+        <h3>
+            Геометрическая прогрессия
+        </h3>
+        <p>
+            <br>
+            Первый член геометрической прогрессии: <input type="text" id="b1" value="1" onkeyup='this.value=parseInt(this.value) | 0'>
+        </p>
+        <p>
+            Знаменатель прогрессии: <input type="text" id="q" value="2" onkeyup='this.value=parseInt(this.value) | 0'>
+        </p>
+        <p>
+            N-й элемент который необходимо найти: <input type="text" id="n" value="3" onkeyup='this.value=parseInt(this.value) | 0'>
+        </p><button onclick="geometric()">Посчитать</button> 
+        <textarea id="geometric_result" class="result" readonly>
+</textarea>
+        <hr>
+        <h3>
+            Числа Фибоначчи
+        </h3>
+        <p>
+            N-й элемент последовательности: <input type="text" id="fibon" value="5" onkeyup='this.value=parseInt(this.value) | 0'>
+        </p><button onclick="fibonachi()">Посчитать</button> 
+        <textarea id="fibon_result" class="result" readonly>
+</textarea>
+        <hr>
+        <h3>
+            Пузырьковая сортировка
+        </h3><button onclick="fillArray()">Заполнить</button> <button onclick="bubbleSort()" id="bubbleSort">Сортировать</button> 
+        <textarea id="quickSort" class="result">
+</textarea>
+    </body>
+</html>
