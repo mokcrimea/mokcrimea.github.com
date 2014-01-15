@@ -5,7 +5,7 @@ h1
   overflow:hidden;
   position:relative;
   display:inline-block;
-  font-weight:400;
+  font-weight: normal;
   font-size:16pt;
   margin-left:5px;
 }
@@ -22,12 +22,7 @@ h1 img
 .IE
 {
   position:absolute;
-  right:0;
-}
-
-.IE_text
-{
-  top:30px;
+  right: 5px;
 }
 
 span
@@ -37,4 +32,11 @@ span
   top:45px;
   left:18px;
 }
+
+.IE_text
+{
+  top:30px;
+}
+
+
 
