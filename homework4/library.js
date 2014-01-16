@@ -20,17 +20,13 @@ function WordLb(Text) {
     var regexp = /[а-я]/i;
     var k = 0;
     for (var i = 0; i < Text.length; i++) {
-      if (!regexp.test(Text[i])) {
-        if (regexp.test(Text[i - 1])) {
+      if (regexp.test(Text[i])) {
+        if (!regexp.test(Text[i - 1])) {
           k++;
         }
       }
     }
-    if (k !== 0) {
-      return k + 1;
-    } else {
-      return k;
-    }
+    return k;
   };
 
   this.vowels = function() {
