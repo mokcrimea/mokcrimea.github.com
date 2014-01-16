@@ -1,42 +1,25 @@
-h1
-{
-  width:121px;
-  height:128px;
-  overflow:hidden;
-  position:relative;
-  display:inline-block;
-  font-weight: normal;
-  font-size:16pt;
-  margin-left:5px;
+body {
+height:auto;
 }
 
-h1 img
-{
-  z-index:1;
-  position:absolute;
-  top:0;
-  left:0;
-  background-color:#FFF;
+.ie {
+float:right;
 }
 
-.IE
-{
-  position:absolute;
-  right: 5px;
+.browsers {
+float:left;
 }
 
-span
-{
-  position:relative;
-  display:inline-block;
-  top:45px;
-  left:18px;
+.browser_icon {
+overflow:hidden;
+width:120px;
+height:128px;
+margin-right:10px;
 }
 
-.IE_text
-{
-  top:30px;
+span {
+position:relative;
+top:50px;
+left:25px;
 }
-
-
 
