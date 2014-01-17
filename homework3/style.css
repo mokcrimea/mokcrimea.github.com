@@ -2,17 +2,8 @@
 float:right;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-.browser_icon {
-=======
-.browser {
->>>>>>> e47a3ef... change css class
-display: inline-block;
-=======
 .browser {
 display:inline-block;
->>>>>>> 0a119b0... Спрятал картинку, которая появляется при ошибке загрузки картинки
 overflow:hidden;
 width:120px;
 height:128px;
