@@ -1,5 +1,16 @@
-.ie {
-float:right;
+img[src="./img/chrome.png"], 
+img[src="./img/firefox.png"], 
+img[src="./img/opera.png"], 
+img[src="./img/safari.png"], 
+img[src="./img/yandex.png"], 
+img[src="./img/ie.png"]{
+  position: relative;
+  top: 0px;
+} 
+
+img {
+  position: relative;
+  top: -30px;
 }
 
 .browser {
@@ -15,5 +26,9 @@ text-align:center;
 vertical-align:middle;
 width:inherit;
 height:inherit;
+}
+
+.ie {
+float:right;
 }
 
