@@ -2,11 +2,8 @@
 float:right;
 }
 
-.browsers {
-float:left;
-}
-
 .browser_icon {
+display: inline-block;
 overflow:hidden;
 width:120px;
 height:128px;
