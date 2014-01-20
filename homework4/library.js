@@ -1,5 +1,18 @@
-var inLine = "корабли лавировали лавировали сверхвылавировали надоевший";
-var WordsLibrary = (function(inputLine) {
+/* Модуль WordsLibrary
+
+  .words() - выводит массив из введенных руских слов(массив не содержит знаки препинания)
+  .count() - выводит общее количество русских слов в строке inputLine
+  .vowels() - выводит строкой  через запятую список всех гласных в строке inputLine
+  .consonants() - выводит строкой через запятую список всех согласных в строке inputLine
+  .syllables() - выводит строкой слова, разделенные пробелом и разбитые на слоги через '-'
+  .prefix() - выделяет приставки у слов в строке inputLine если таковые находит
+
+  Изменить тестовую строку можно обращением к window.inputLine или inputLine в консоли.
+
+  */
+
+var WordsLibrary = (function() {
+  this.inputLine = 'корабли лавировали сверхвылавировали надоевший исподтишка';
   var k, numOfSyllables, Soglasnih,
     outputLetters = '', // для функции getLetter
     re = /[^а-яё]+/i, // для разделения массива на слова.
@@ -8,12 +21,10 @@ var WordsLibrary = (function(inputLine) {
     // для разбиения на слоги
     reGluhie = /[бвгджзйкпстфхцьъчшщ]/i,
     reZvonkie = /[мнлр]/i,
-    prefixArray = ['противо', 'внутри', 'предо', 'преди', 'сверх', 'среди', 'через', 'черес', 'испод', 'междо', 'между', 'ебез', 'небес', 'около', 'после', 'возо', 'надо', 'недо', 'низо', 'обез', 'обес', 'пере', 'подo', 'оза', 'пред', 'разо', 'чрез', 'без', 'бес', 'под', 'пра', 'пре', 'при', 'про', 'раз', 'рас', 'роз', 'ос', 'вне', 'воз', 'вос', 'все', 'взо', 'изо', 'кое', 'кой', 'меж', 'над', 'наи', 'низ', 'нис', 'обо', 'ото', 'сыз', 'тре', 'во', 'вз', 'вс', 'вы', 'до', 'за', 'из', 'ис', 'на', 'не', 'ни', 'об', 'от', 'па', 'по', 'со', 'су', 'у', 'в', 'к', 'о', 'с'];
-  var OutputSyllables = '',
+    prefixArray = ['противо', 'внутри', 'предо', 'преди', 'сверх', 'среди', 'через', 'черес', 'испод', 'междо', 'между', 'ебез', 'небес', 'около', 'после', 'возо', 'надо', 'недо', 'низо', 'обез', 'обес', 'пере', 'подo', 'оза', 'пред', 'разо', 'чрез', 'без', 'бес', 'под', 'пра', 'пре', 'при', 'про', 'раз', 'рас', 'роз', 'ос', 'вне', 'воз', 'вос', 'все', 'взо', 'изо', 'кое', 'кой', 'меж', 'над', 'наи', 'низ', 'нис', 'обо', 'ото', 'сыз', 'тре', 'во', 'вз', 'вс', 'вы', 'до', 'за', 'из', 'ис', 'на', 'не', 'ни', 'об', 'от', 'па', 'по', 'со', 'су', 'у', 'в', 'к', 'о', 'с'],
+    OutputSyllables = '',
     OutputPrefix = '';
-  //  Переменные для разбиения слова на слоги
-  var cur, pre, nex1, nex2, nex3, nex4;
-  var tempString;
+
 
 
   //Функция возвращающая строку c буквами. На вход подается строка и регулярное выражение.
@@ -28,7 +39,7 @@ var WordsLibrary = (function(inputLine) {
   }
   // Разделяем inputLine с помощью регулярного выражения на массив с раздельными словами.
   function separateWords() {
-    //Почему-то, если на краях входящей строки будут символы типа !, ? то комманда split не убирает их.
+    //Почему-то, если на краях входящей строки будут символы типа !,? то комманда split не убирает их.
     //Дописал replace тем самым удаляя эти знаки.
     return inputLine.replace(/\!*\?*\;*\:*\,*\.*\$*/ig, '').split(re);
   }
@@ -61,12 +72,19 @@ var WordsLibrary = (function(inputLine) {
     }
     return numOfSyllables;
   }
-
+  //Функция которая применяется к каждому слову в массиве функции separateWords()
+  //Разбивает слова на слоги. Правила разбиения написаны "влоб" и иногда перекрываются. 
+  //Данная функция не покроет правильно разбиение на слоги любого русского слова.
+  //Но с большинством вроде бы справляется.
   function wordSyllable(item, i, arr) {
+    // SyllablesArray = массив в который помещаются слоги для одного item-а.
+    // В конце функции все сбрасывается в переменную OutputSyllables и на следующем цикле
+    // переменная SyllablesArray обнуляется.
     var SyllablesArray = [];
+    var cur, nex1, nex2, nex3, nex4, tempString;
+    //Записываем сколько всего слогов в слове. Это для того чтобы правильно обрабатывать первый и последний.
     var Slogov = countSyllables(item);
-
-
+    //Если в слове 1 гласная, значит и один слог. Выводим это слово.
     if (Slogov === 1) {
       SyllablesArray.push(item);
     } else {
@@ -78,6 +96,7 @@ var WordsLibrary = (function(inputLine) {
         nex4 = item[i + 4] || undefined;
         nex5 = item[i + 5] || undefined;
 
+        //Набор правил который я пытался писать по учебнику русского языка, сначала. Потом все немного усложнилось :)
         if (isGlasnaya(cur) && isGlasnaya(nex1) && (Slogov !== 0)) {
           SyllablesArray.push(cur + '-');
           Slogov -= 1;
@@ -135,7 +154,6 @@ var WordsLibrary = (function(inputLine) {
           i++;
         } else if (Slogov > 1) {
           tempString = SyllablesArray[SyllablesArray.length - 1];
-          if (typeof tempString == 'undefined') tempString = ('');
           tempString = tempString.substr(0, tempString.length - 1);
           tempString += cur + '-';
           SyllablesArray.pop();
@@ -146,7 +164,14 @@ var WordsLibrary = (function(inputLine) {
 
     return OutputSyllables += SyllablesArray + ' ';
   }
-
+//При выполнении функции WordsLibrary.prefix() вызывается функция которая выдается массив из всех слов.
+//Далее каждый элемент этого массива перебирается функцией forEach которая в свою очередь для каждого элемента 
+//задействует функцию findPrefix.
+//
+//На вход поступает слово item. Создаем цикл по всем приставкам в массиве prefixArray
+//И для каждоый приставки проверяем есть ли в слове item такая часть(с начала слова) которая бы соотвествовала
+//приставке. Если такая приставка находится временный массив tempStringWithPrefix заполняется значением приставки и
+//через знак "-" остатком слова. А далее break, выполнение прекращается. Следующее слово item.
   function findPrefix(item, i, arr) {
     tempStringWithPrefix = [];
     for (k = 0; k < prefixArray.length; k++) {
@@ -156,13 +181,6 @@ var WordsLibrary = (function(inputLine) {
       }
     }
     return OutputPrefix += tempStringWithPrefix + ' ';
-  }
-// обнуление переменной через временную
-  function CallBack(variable) {
-    var temp = '';
-    temp = variable;
-    variable = '';
-    return temp;
   }
 
   return {
@@ -183,25 +201,34 @@ var WordsLibrary = (function(inputLine) {
     },
 
     syllables: function() {
+      temp = '';
       separateWords().forEach(wordSyllable);
-      return CallBack(OutputSyllables).replace(/\,+/ig, ''); //
+      temp = OutputSyllables;
+      OutputSyllables = '';
+      return temp.replace(/\,+/ig, ''); //
     },
 
     prefix: function() {
+      temp = '';
       separateWords().forEach(findPrefix);
-      return CallBack(OutputPrefix);
+      temp = OutputPrefix;
+      OutputPrefix = '';
+      return temp;
     }
   };
 
-})(inLine);
+})();
 
-//Тестовая зона
+//Тестовая зона.
+console.log('Массив из всех русских слов');
 console.log(WordsLibrary.words());
-console.log('=====================');
-console.log(WordsLibrary.count()); //Посчет количества слов
-console.log(WordsLibrary.vowels()); //Вывод всех глсных
-console.log(WordsLibrary.consonants()); //Вывод всех согласных
-console.log('====================='); //Вывод всех согласных
-console.log(WordsLibrary.syllables()); //Слоги
-console.log('====================='); //Вывод всех согласных
+console.log('Количество русских слов');
+console.log(WordsLibrary.count());
+console.log('Список гласных');
+console.log(WordsLibrary.vowels());
+console.log('Список согласных');
+console.log(WordsLibrary.consonants());
+console.log('Слова разбитые на слоги');
+console.log(WordsLibrary.syllables());
+console.log('Слова с выделенными приставками');
 console.log(WordsLibrary.prefix());
