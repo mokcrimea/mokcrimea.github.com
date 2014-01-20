@@ -13,7 +13,7 @@
 
 var WordsLibrary = (function() {
   this.inputLine = 'корабли лавировали сверхвылавировали надоевший исподтишка'; // Строка с которой мы работаем
-  var k, numOfSyllables, Soglasnih,
+  var k, numOfSyllables,
     outputLetters = '', // для функции getLetter
     re = /[^а-яё]+/i, // для разделения массива на слова.
     reGlasnie = /[аеёиоуыэюя]/i, // для проверки на гласные
