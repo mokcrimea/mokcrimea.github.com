@@ -199,7 +199,7 @@ var WordsLibrary = (function() {
     consonants: function() {
       return (getLetters(inputLine, reSoglasnie));
     },
-
+    //Разбивает слова на слоги и выводит строкой.
     syllables: function() {
       temp = '';
       separateWords().forEach(wordSyllable);
@@ -207,7 +207,7 @@ var WordsLibrary = (function() {
       OutputSyllables = '';
       return temp.replace(/\,+/ig, ''); //
     },
-
+    //ищет приставки в словах, если находит выводит строкой.
     prefix: function() {
       temp = '';
       separateWords().forEach(findPrefix);
