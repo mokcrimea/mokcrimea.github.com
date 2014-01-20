@@ -154,6 +154,7 @@ var WordsLibrary = (function() {
           i++;
         } else if (Slogov > 1) {
           tempString = SyllablesArray[SyllablesArray.length - 1];
+          if (typeof tempString == 'undefined') tempString - '';
           tempString = tempString.substr(0, tempString.length - 1);
           tempString += cur + '-';
           SyllablesArray.pop();
