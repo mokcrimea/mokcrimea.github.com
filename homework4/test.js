@@ -1,55 +1,30 @@
 var Words = (function() {
-    /**
-     * Функция подсчета количества слов
-     * @return {Integer}
-     */
     String.prototype.count = function() {
         return separateWords(this).length;
     };
-    /**
-     * Функция отвечает за отбор используемых гласных
-     * @return {String} гласные перечислены через ","
-     */
+
     String.prototype.vowels = function() {
         return getLetters(this, /[аеёиоуыэюя]/i);
     };
-    /**
-     * Функция отвечает за отбор используемых согласных
-     * @return {String} согласные перечислены через ","
-     */
+
     String.prototype.consonants = function() {
         return getLetters(this, /[мнлрбвгджзйкпстфхцьъчшщ]/i);
     };
-    /**
-     * Функция разбиения слов на слоги
-     * @return {String}
-     */
+
     String.prototype.syllables = function() {
         OutputSyllables = '';
         separateWords(this).forEach(wordSyllable);
         return OutputSyllables.replace(/\,+/ig, '');
     };
-    /**
-     * Функция проверки слов на наличие приставок
-     * @return {String} [description]
-     */
+
     String.prototype.prefix = function() {
         OutputPrefix = '';
         separateWords(this).forEach(findPrefix);
         return OutputPrefix;
     };
-    /**
-     * Функция вырезает символы из строки и возвразщает массив из слов
-     * @param  {String} that обрабатываемая строка
-     * @return {Array}      массив из слов, без знаков препинания
-     */
 
     function separateWords(that) {
-        if (that.length === 0) {
-            return [];
-        } else {
-            return that.replace(/(^\s*|\!*\?*\;*\:*\,*\.*\$*\s*$)/ig, '').split(/[^а-яё]+/ig);
-        }
+        return that.toString().replace(/\!*\?*\;*\:*\,*\.*\$*/ig, '').split(/[^а-яё]+/i);
     }
 
     function getLetters(that, Letters) {
