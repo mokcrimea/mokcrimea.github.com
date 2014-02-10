@@ -36,9 +36,10 @@ input {
     transition: width 0.05s linear;
 }
 .btn {
+    position: relative;
     cursor: pointer;
-    width: 80px;
-    height: 18px;
+    width: 82px;
+    height: 20px;
     background-origin: padding-box, border-box;
     background-clip: padding-box, border-box;
     background-image: linear-gradient(to top, #e2e2e2 30%, #f2f2f2 70%), linear-gradient(to top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.1));
@@ -52,14 +53,16 @@ input {
     background-image: linear-gradient(to top, #fdffcc 30%, #feffeb 70%), linear-gradient(to top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.1));
 }
 .btn:focus {
-    background-origin: border-box;
-    background-clip: border-box;
-    background-image: linear-gradient(to top, #e2e2e2 30%, #f2f2f2 70%);
+    border-color: rgba(0, 35, 214, 0.94);
     box-shadow: 0 0 4px rgba(0, 35, 214, 0.94);
     outline: none;
+    width: 80px;
+    height: 18px;
+    margin: 1px 1px;
+    border: none;
 }
 .btn:active {
-    background-image: linear-gradient(to top, #e2e2e2 30%, #f2f2f2 70%), linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.1));
+    background-image: linear-gradient(to top, #e2e2e2 30%, #f2f2f2 70%), linear-gradient(to top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.35));
     box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.26);
     text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.75);
 }

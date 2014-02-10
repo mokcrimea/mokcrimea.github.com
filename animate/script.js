@@ -1,4 +1,4 @@
-document.body.getElementsByTagName('button')[0].addEventListener('click', progressBar);
+document.body.getElementsByTagName('input')[0].addEventListener('keyup', progressBar);
 
 function progressBar() {
     var maxWidth = document.body.getElementsByClassName('progress_bar')[0].clientWidth;
