@@ -13,6 +13,7 @@ body {
 }
 .percents {
     position: relative;
+    display: block;
     top: -13px;
     margin-left: 47%;
     font-family: Verdana;
@@ -24,9 +25,10 @@ body {
     border-radius: 6px;
     background: linear-gradient(to top, #28bf14 0%, #8bda1a 14%, #28bf14 49%, #abff58 100%);
     height: 13px;
-    transition: width 2s linear;
+    transition: 0.2s linear;
 }
 .btn {
+    padding: 0;
     position: relative;
     cursor: pointer;
     width: 82px;
@@ -44,13 +46,12 @@ body {
     background-image: linear-gradient(to top, #fdffcc 30%, #feffeb 70%), linear-gradient(to top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.1));
 }
 .btn:focus {
-    border-color: rgba(0, 35, 214, 0.94);
     box-shadow: 0 0 4px rgba(0, 35, 214, 0.94);
     outline: none;
+    border: none;
     width: 80px;
     height: 18px;
     margin: 1px 1px;
-    border: none;
 }
 .btn:active {
     background-image: linear-gradient(to top, #e2e2e2 30%, #f2f2f2 70%), linear-gradient(to top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.35));
